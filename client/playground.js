@@ -54,6 +54,13 @@ playAll = function() {
 	player3.play();
 	player4.play();
 }
+stopAll = function() {
+
+	player1.stop();
+	player2.stop();
+	player3.stop();
+	player4.stop();
+}
 
 setSpeed = function(speed) {
 

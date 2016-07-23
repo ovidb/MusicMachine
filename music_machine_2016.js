@@ -19,6 +19,8 @@ if (Meteor.isClient) {
         if (starter.start==1) {
           playAll();
 
+        } else if (starter.start == 0) {
+          stopAll();
         }
       }
 
@@ -93,9 +95,10 @@ if (Meteor.isClient) {
   Template.playground.events({
 
      "click button.startButton": function () {
-      Session.set('startdac', 1);
+      startdac = (Session.get('startdac')) ? 1 - startdac : 1;
+      Session.set('startdac', startdac);
       var val = MusicMachine.findOne({});
-      MusicMachine.update({ _id: val._id }, {$set: {start: 1}});
+      MusicMachine.update({ _id: val._id }, {$set: {start:startdac}});
     },
 
      "click button.myButton1": function () {
