@@ -74,6 +74,21 @@ if (Meteor.isClient) {
       return Session.get('arp');
     },
 
+    "snaredrum1": function () {
+      var starter = MusicMachine.findOne();
+      if (starter) {
+        if (starter.snaredrum1==1) {
+          playSnareDrums();
+
+        } else if (starter.snaredrum1==0) {
+
+          stopSnareDrums();
+
+        }
+      }
+      return Session.get('snaredrum1');
+    },
+
 
 
     //don't forget the commas between each function
@@ -137,6 +152,19 @@ if (Meteor.isClient) {
       Session.set('arp', 0);
       var val = MusicMachine.findOne({});
       MusicMachine.update({ _id: val._id }, {$set: {arp: 0}});
+
+    },
+      "click button.myButton7": function () {
+      Session.set('snaredrum1', 1);
+      var val = MusicMachine.findOne({});
+      MusicMachine.update({ _id: val._id }, {$set: {snaredrum1: 1}});
+
+    },
+
+      "click button.myButton8": function () {
+      Session.set('snaredrum1', 0);
+      var val = MusicMachine.findOne({});
+      MusicMachine.update({ _id: val._id }, {$set: {snaredrum1: 0}});
 
     }
 
